@@ -10,7 +10,7 @@
 # 一、
 ##	1,得到gdb;
         其实这个是最简单的，Linux PC上gdb不用说了。Android的是~/opt/android-ndk-r7/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gdb(其中~/opt/，与个人设置有关;android-ndk-r7与编译器版本有关,貌似android-ndk-r4没有toolchains目录，不知是否可以用gdbserver调试程序，当然这就不在本文档的讨论范围之内了).
-#	* 2,得到可执行文件app
+* 2,得到可执行文件app
         由于要使用gdb，所以app必须是"not stripped".Linux PC上"gcc hello.c"编译出来的a.out默认就是"not stripped".Android工程中jni目录下，我们使用"ndk-build"默认是"stripped"的。因此需要更改编译脚本：在~/opt/android-ndk-r7/build/core/中打开default-build-commands.mk文件，将"cmd-strip = $(PRIVATE_STRIP) --strip-unneeded $(call host-path,$1)"这一行注释掉.这一行就是做的"strip"操作。再用"ndk-build"编译就是"not stripped"的了。
 ##	3,得到core文件（程序异常退出时，当前目录已经有core文件了，当然，此步可以跳过）
         Linux PC和Android，命令"ulimit -c"查看生成的core文件的大小限制。一般输出是"0",即不允许生成core文件，命令"ulimit -c unlimited"将其设置成无限制。再次运行程序时，就会生成core文件了。此外"ulimit -a"可以查看所有设置。另外一个重要参数是core文件的路径,“cat /proc/sys/kernel/core_pattern”输出core文件的路径，当然也可以修改路径，例如“echo core > /proc/sys/kernel/core_pattern”将其保存在当前路径下.

@@ -3,15 +3,15 @@
 	
         首先，在程序不正常退出时，内核会在当前工作目录下生成一个core文件(是一个内存映像，同时加上调试信息)。
         使用gdb来查看core文件，可以指示出导致程序出错的代码所在文件和行数。这个能给debug带来极大方便。
-	查看core dump位置方法:"gdb ./app core".
-	故，我们需要gdb，可执行文件app，以及core文件。下面将根据这3个需求，依次得到它们;
+        查看core dump位置方法:"gdb ./app core".
+        故，我们需要gdb，可执行文件app，以及core文件。下面将根据这3个需求，依次得到它们;
 
 ## 一、
-###	1,得到gdb;
+####	1,得到gdb;
         其实这个是最简单的，Linux PC上gdb不用说了。
         Android的是$(NDK)/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gdb
         (其中$(NDK)是NDK路径，如：~/opt/android-ndk-r7,貌似android-ndk-r4没有toolchains目录).
-###     2,得到可执行文件app
+####     2,得到可执行文件app
         由于要使用gdb，所以app必须是"not stripped".Linux PC上"gcc hello.c"编译出来的a.out默认就是"not stripped".
         Android工程中jni目录下，我们使用"ndk-build"默认是"stripped"的。
         因此需要更改编译脚本：在$(NDK)build/core/中打开default-build-commands.mk文件，

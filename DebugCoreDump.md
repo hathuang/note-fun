@@ -16,11 +16,11 @@
 		Linux PC和Android，命令"ulimit -c"查看生成的core文件的大小限制。一般输出是"0",即不允许生成core文件，命令"ulimit -c unlimited"将其设置成无限制。再次运行程序时，就会生成core文件了。此外"ulimit -a"可以查看所有设置。另外一个重要参数是core文件的路径,“cat /proc/sys/kernel/core_pattern”输出core文件的路径，当然也可以修改路径，例如“echo core > /proc/sys/kernel/core_pattern”将其保存在当前路径下.
 ##	4,到此仅需运行"gdb ./app core"(Linux PC)或android : "~/opt/android-ndk-r7/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gdb ./app core",就可以看到程序出错的位置。如果不够详细，用"bt"命令，将会列出函数调用关系。下面是一个实际例子：
 
-hat@SIGMA:~/sigma/process/libs/armeabi$ ~/opt/android-ndk-r7/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gdb ./testcore core 
-GNU gdb 6.6
-Copyright (C) 2006 Free Software Foundation, Inc.
-GDB is free software, covered by the GNU General Public License, and you are
-welcome to change it and/or distribute copies of it under certain conditions.
+  hat@SIGMA:~/sigma/process/libs/armeabi$ ~/opt/android-ndk-r7/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gdb ./testcore core 
+  GNU gdb 6.6
+  Copyright (C) 2006 Free Software Foundation, Inc.
+  GDB is free software, covered by the GNU General Public License, and you are
+  welcome to change it and/or distribute copies of it under certain conditions.
 Type "show copying" to see the conditions.
 There is absolutely no warranty for GDB.  Type "show warranty" for details.
 This GDB was configured as "--host=x86_64-linux-gnu --target=arm-elf-linux"...

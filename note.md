@@ -43,3 +43,14 @@ To uninstall vim
                 printf("Hello world !");
                 return 0;
         }
+## about tabstop
+This line is about coding style.
+	someone perfer to set tabstop = 8, but someone perfer 4.
+	No matter 8 or 4, if you also set expandtab, vim will add $(tabstop)(8
+	or 4) spaces instead of a tab(\t). What happen ? If you set tabstop =
+	4, and set expandtab, but I like to set tabstop = 8, when I review
+	your code there are 4 spaces. Let's solve this problem, if you set
+	noexpandtab, it will be a Tab(\t), when I review you code if will be
+	show as my style, beautifully!
+
+	So, set noexpandtab.

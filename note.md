@@ -58,3 +58,5 @@ This line is about coding style.
 
 	And, a web to tell you the "Indentation in the real world"
 	http://tedlogan.com/techblog3.html
+## git note
+	git branch -D BranchName
